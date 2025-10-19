@@ -11,6 +11,9 @@
     "README.md",
     "CHANGELOG.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "amqplib": "^0.10.5",
     "axios": "^1.6.7",
