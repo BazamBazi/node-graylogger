@@ -1,0 +1,13 @@
+{
+  "name": "@bazambazi/node-graylogger",
+  "version": "0.1.0",
+  "description": "A custom logger library",
+  "main": "src/logger.js",
+  "keywords": ["graylog", "rabbitmq", "gelf"],
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.10.5",
+    "axios": "^1.6.7",
+    "bluebird": "^3.7.2"
+  }
+}
