@@ -1,0 +1,24 @@
+{
+	"name": "telemium-server",
+	"image": "node:22",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"eamodio.gitlens",
+				"esbenp.prettier-vscode"
+			]
+		}
+	},
+
+	"postCreateCommand": "npm install && echo 'Dependencies installed!'",
+
+	"remoteUser": "node"
+}

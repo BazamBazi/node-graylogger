@@ -5,6 +5,12 @@
   "main": "src/logger.js",
   "keywords": ["graylog", "rabbitmq", "gelf"],
   "license": "MIT",
+  "files": [
+    "src/",
+    "package.json",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "amqplib": "^0.10.5",
     "axios": "^1.6.7",
