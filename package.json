@@ -1,6 +1,6 @@
 {
   "name": "@bazambazi/node-graylogger",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A custom logger library",
   "main": "src/logger.js",
   "keywords": ["graylog", "rabbitmq", "gelf"],

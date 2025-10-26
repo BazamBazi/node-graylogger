@@ -13,6 +13,21 @@ class RabbitMQ {
         this.queue = config.queue || 'default_queue';
         this.retryDelay = config.retryDelay || 1000;
         this.isConnected = false;
+
+        this.onErrorBound = this.onError.bind(this);
+        this.onCloseBound = this.onClose.bind(this);
+    }
+
+    onError(error) {
+        this.isConnected = false;
+        console.error('RabbitMQ connection error:', error);
+        this.connect();
+    }
+
+    onClose() {
+        this.isConnected = false;
+        console.log('RabbitMQ connection closed');
+        this.connect();
     }
 
     async connect() {
@@ -32,18 +47,9 @@ class RabbitMQ {
                 console.log('RabbitMQ connected');
 
                 this.isConnected = true;
+                this.connection.on('error', this.onErrorBound);
+                this.connection.on('close', this.onCloseBound);
 
-                this.connection.on('error', (err) => {
-                    console.error('RabbitMQ connection error:', err);
-                    this.isConnected = false;
-                    this.connect();
-                });
-
-                this.connection.on('close', () => {
-                    console.log('RabbitMQ connection closed');
-                    this.isConnected = false;
-                    this.connect();
-                });
                 return;
             } catch (error) {
                 console.error(`RabbitMQ connection ${attempt > 0 ? 'reconnection' : 'failed'} (Attempt ${attempt}):`, error);
@@ -68,13 +74,18 @@ class RabbitMQ {
 
     async close() {
         this.isConnected = false;
+        this.connection.off('error', this.onErrorBound);
+        this.connection.off('close', this.onCloseBound);
+
         if (this.channel) {
             await this.channel.close();
         }
         if (this.connection) {
             await this.connection.close();
         }
+
         console.log('RabbitMQ connection closed');
+        return Promise.resolve();
     }
 }
 

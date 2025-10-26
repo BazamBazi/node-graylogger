@@ -26,7 +26,7 @@ npm i @bazambazi/node-graylogger
 Initialize the logger with your [configuration](#configuration-options):
 
 ```javascript
-const Logger = require('node-graylogger');
+const Logger = require('@bazambazi/node-graylogger');
 
 const loggerConfig = {
     transport: 'console', // 'http', 'amqp', or 'console'

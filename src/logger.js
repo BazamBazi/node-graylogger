@@ -72,6 +72,13 @@ class Logger {
         return Promise.resolve();
     }
 
+    disconnect() {
+        if (this.rabbitMQ) {
+            return this.rabbitMQ.close();
+        }
+        return Promise.resolve();
+    }
+
     report(shortMessage, fullMessage, data = {}, level = this.logLevels.ALERT) {
         const _this = this;
         const logObject = Logger.getLogObject(shortMessage, fullMessage, data, level, this.config);
